@@ -10,12 +10,12 @@ interface EventInterface {
     /**
      * Set the start date as a DateTime object.
      */
-    public function set_start_date( DateTime $date );
+    public function set_start_date( \DateTime $date );
 
     /**
      * Set the end date as a DateTime object.
      */
-    public function set_end_date( DateTime $date );
+    public function set_end_date( \DateTime $date );
 
     /**
      * Get the start date as a DateTime object or as a string if the format is specified.
