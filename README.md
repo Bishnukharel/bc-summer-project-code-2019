@@ -4,11 +4,13 @@ This project contains the local development environment and the code base for th
 
 Documentation for the development environment can be found [here](./DOCKER.md).
 
+## Assignments
+
+If a branch contains an assigment, it is found in [ASSIGNMENT.md](./ASSIGNMENT.md).
+
 ## Author
 
 **Ville Siltala**
-
-I am a WordPress team lead at [Geniem](https://geniem.com) based in Tampere, Finland.
 
 You'll find me:
 

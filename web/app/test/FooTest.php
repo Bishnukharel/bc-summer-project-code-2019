@@ -1,15 +1,14 @@
 <?php
 
-namespace AppTest\Acme;
+namespace AppTest;
 
-use App\Acme\Foo;
+use App\Event;
 use PHPUnit\Framework\TestCase;
 
 class FooTest extends TestCase
 {
     public function testGetName()
     {
-        $foo = new Foo();
-        $this->assertEquals($foo->getName(), 'Nginx PHP MySQL');
+        $event = new Event();
     }
 }
