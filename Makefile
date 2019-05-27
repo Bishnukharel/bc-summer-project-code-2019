@@ -22,6 +22,7 @@ help:
 	@echo "  mysql-restore       Restore backup of all databases"
 	@echo "  phpmd               Analyse the API with PHP Mess Detector"
 	@echo "  test                Test application"
+	@echo "  rm-containers       Remove all containers"
 
 init:
 	@$(shell cp -n $(shell pwd)/web/app/composer.json.dist $(shell pwd)/web/app/composer.json 2> /dev/null)
@@ -32,9 +33,6 @@ apidoc:
 
 clean:
 	@rm -Rf data/db/mysql/*
-	@rm -Rf $(MYSQL_DUMPS_DIR)/*
-	@rm -Rf web/app/vendor
-	@rm -Rf web/app/composer.lock
 	@rm -Rf web/app/doc
 	@rm -Rf web/app/report
 	@rm -Rf etc/ssl/*
@@ -76,6 +74,10 @@ phpmd:
 test: code-sniff
 	@docker-compose exec -T php ./app/vendor/bin/phpunit --colors=always --configuration ./app/
 	@make resetOwner
+
+rm-containers:
+	@docker stop $(shell docker ps -a -q)
+	@docker rm $(shell docker ps -a -q)
 
 resetOwner:
 	@$(shell chown -Rf $(SUDO_USER):$(shell id -g -n $(SUDO_USER)) $(MYSQL_DUMPS_DIR) "$(shell pwd)/etc/ssl" "$(shell pwd)/web/app" 2> /dev/null)

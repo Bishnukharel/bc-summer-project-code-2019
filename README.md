@@ -8,6 +8,10 @@ Documentation for the development environment can be found [here](./DOCKER.md).
 
 If a branch contains an assigment, it is found in [ASSIGNMENT.md](./ASSIGNMENT.md).
 
+## Dev tools installation
+
+Read the [installation guide](./INSTALLATION.md).
+
 ## Author
 
 **Ville Siltala**
