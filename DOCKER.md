@@ -198,13 +198,13 @@ ___
 2. Start the application :
 
     ```sh
-    sudo docker-compose up -d
+    docker-compose up -d
     ```
 
     **Please wait this might take a several minutes...**
 
     ```sh
-    sudo docker-compose logs -f # Follow log output
+    docker-compose logs -f # Follow log output
     ```
 
 3. Open your favorite browser :
@@ -216,7 +216,7 @@ ___
 4. Stop and clear services
 
     ```sh
-    sudo docker-compose down -v
+    docker-compose down -v
     ```
 
 ___
@@ -245,7 +245,7 @@ When developing, you can use [Makefile](https://en.wikipedia.org/wiki/Make_(soft
 Start the application :
 
 ```sh
-sudo make docker-start
+make docker-start
 ```
 
 Show help :
@@ -261,49 +261,49 @@ ___
 ### Installing package with composer
 
 ```sh
-sudo docker run --rm -v $(pwd)/web/app:/app composer require symfony/yaml
+docker run --rm -v $(pwd)/web/app:/app composer require symfony/yaml
 ```
 
 ### Updating PHP dependencies with composer
 
 ```sh
-sudo docker run --rm -v $(pwd)/web/app:/app composer update
+docker run --rm -v $(pwd)/web/app:/app composer update
 ```
 
 ### Generating PHP API documentation
 
 ```sh
-sudo docker-compose exec -T php php -d memory_limit=256M -d xdebug.profiler_enable=0 ./app/vendor/bin/apigen generate app/src --destination ./app/doc
+docker-compose exec -T php php -d memory_limit=256M -d xdebug.profiler_enable=0 ./app/vendor/bin/apigen generate app/src --destination ./app/doc
 ```
 
 ### Testing PHP application with PHPUnit
 
 ```sh
-sudo docker-compose exec -T php ./app/vendor/bin/phpunit --colors=always --configuration ./app
+docker-compose exec -T php ./app/vendor/bin/phpunit --colors=always --configuration ./app
 ```
 
 ### Fixing standard code with [PSR2](http://www.php-fig.org/psr/psr-2/)
 
 ```sh
-sudo docker-compose exec -T php ./app/vendor/bin/phpcbf -v --standard=PSR2 ./app/src
+docker-compose exec -T php ./app/vendor/bin/phpcbf -v --standard=PSR2 ./app/src
 ```
 
 ### Checking the standard code with [PSR2](http://www.php-fig.org/psr/psr-2/)
 
 ```sh
-sudo docker-compose exec -T php ./app/vendor/bin/phpcs -v --standard=PSR2 ./app/src
+docker-compose exec -T php ./app/vendor/bin/phpcs -v --standard=PSR2 ./app/src
 ```
 
 ### Analyzing source code with [PHP Mess Detector](https://phpmd.org/)
 
 ```sh
-sudo docker-compose exec -T php ./app/vendor/bin/phpmd ./app/src text cleancode,codesize,controversial,design,naming,unusedcode
+docker-compose exec -T php ./app/vendor/bin/phpmd ./app/src text cleancode,codesize,controversial,design,naming,unusedcode
 ```
 
 ### Checking installed PHP extensions
 
 ```sh
-sudo docker-compose exec php php -m
+docker-compose exec php php -m
 ```
 
 ### Handling database
@@ -311,7 +311,7 @@ sudo docker-compose exec php php -m
 #### MySQL shell access
 
 ```sh
-sudo docker exec -it mysql bash
+docker exec -it mysql bash
 ```
 
 and
@@ -327,13 +327,13 @@ mkdir -p data/db/dumps
 ```
 
 ```sh
-source .env && sudo docker exec $(sudo docker-compose ps -q mysqldb) mysqldump --all-databases -u"$MYSQL_ROOT_USER" -p"$MYSQL_ROOT_PASSWORD" > "data/db/dumps/db.sql"
+source .env && docker exec $(docker-compose ps -q mysqldb) mysqldump --all-databases -u"$MYSQL_ROOT_USER" -p"$MYSQL_ROOT_PASSWORD" > "data/db/dumps/db.sql"
 ```
 
 #### Restoring a backup of all databases
 
 ```sh
-source .env && sudo docker exec -i $(sudo docker-compose ps -q mysqldb) mysql -u"$MYSQL_ROOT_USER" -p"$MYSQL_ROOT_PASSWORD" < "data/db/dumps/db.sql"
+source .env && docker exec -i $(docker-compose ps -q mysqldb) mysql -u"$MYSQL_ROOT_USER" -p"$MYSQL_ROOT_PASSWORD" < "data/db/dumps/db.sql"
 ```
 
 #### Creating a backup of single database
@@ -341,13 +341,13 @@ source .env && sudo docker exec -i $(sudo docker-compose ps -q mysqldb) mysql -u
 **`Notice:`** Replace "YOUR_DB_NAME" by your custom name.
 
 ```sh
-source .env && sudo docker exec $(sudo docker-compose ps -q mysqldb) mysqldump -u"$MYSQL_ROOT_USER" -p"$MYSQL_ROOT_PASSWORD" --databases YOUR_DB_NAME > "data/db/dumps/YOUR_DB_NAME_dump.sql"
+source .env && docker exec $(docker-compose ps -q mysqldb) mysqldump -u"$MYSQL_ROOT_USER" -p"$MYSQL_ROOT_PASSWORD" --databases YOUR_DB_NAME > "data/db/dumps/YOUR_DB_NAME_dump.sql"
 ```
 
 #### Restoring a backup of single database
 
 ```sh
-source .env && sudo docker exec -i $(sudo docker-compose ps -q mysqldb) mysql -u"$MYSQL_ROOT_USER" -p"$MYSQL_ROOT_PASSWORD" < "data/db/dumps/YOUR_DB_NAME_dump.sql"
+source .env && docker exec -i $(docker-compose ps -q mysqldb) mysql -u"$MYSQL_ROOT_USER" -p"$MYSQL_ROOT_PASSWORD" < "data/db/dumps/YOUR_DB_NAME_dump.sql"
 ```
 
 
