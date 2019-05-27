@@ -4,6 +4,10 @@ This project contains the local development environment and the code base for th
 
 Documentation for the development environment can be found [here](./DOCKER.md).
 
+## Dev tools installation
+
+Read the [installation guide](./INSTALLATION.md).
+
 ## Author
 
 **Ville Siltala**
