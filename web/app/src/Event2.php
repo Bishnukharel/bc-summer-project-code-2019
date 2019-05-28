@@ -8,7 +8,6 @@ namespace App;
  * TODO:
  * - Implement the interface.
  */
-<<<<<<< HEAD
 class Event2 implements EventInterface {
 
     protected $title;
@@ -42,6 +41,3 @@ class Event2 implements EventInterface {
         return $format ? $this->end_date->format( $format ) : $this->end_date;
     }
 }
-=======
-class Event2 implements EventInterface {}
->>>>>>> oop2
