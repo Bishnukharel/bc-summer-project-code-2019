@@ -1,6 +1,45 @@
 # Dev Tools Installation
 
-## INSTALL DOCKER CE
+## INSTALL DOCKER FOR WINDOWS
+
+- Install Docker Desktop for Windows. You'll need a Docker Hub accout for this.
+   - https://hub.docker.com/editions/community/docker-ce-desktop-windows
+   - Run the installation exe as administrator!
+- To enable WSL remote connect to Docker for Windows:
+   - Start Docker for Win by running the application as the administrator.
+   - Open Settings > General > Check "Expose daemon..."
+- Share C volume with Docker
+   - Open Settings > Shared Drives > Check "Share C"
+- Set a fixed DNS server
+   - Open Settings > Network > Fixed 8.8.8.8
+
+## SETUP DEBIAN WSL TO SYNC FILES
+
+Inside Debian run:
+
+```
+sudo nano /etc/wsl.conf
+```
+
+This opens the nano text editor. Copy and paste the following content into the text editor view.
+
+```
+#Let's enable extra metadata options by default
+[automount]
+enabled = true
+root = /
+options = "metadata,umask=22,fmask=11"
+mountFsTab = false
+
+#Let's enable DNS – even though these are turned on by default, we'll specify here just to be explicit.
+[network]
+generateHosts = true
+generateResolvConf = true
+```
+
+Save this content by typing "ctrl + X" (meaning exit and save). Answer "y" for the prompt of writing the file and hit enter to use the same filename (/etc/wsl.conf).
+
+## INSTALL DOCKER CE INSIDE DEBIAN
 Based on:
 - https://docs.docker.com/install/linux/docker-ce/debian/
 - https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly#install-docker-compose
@@ -23,7 +62,7 @@ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 # Verify that you now have the key with the fingerprint:
 sudo apt-key fingerprint 0EBFCD88
 
-# You should see:
+# You should see something like this:
 # pub   4096R/0EBFCD88 2017-02-22
 #      Key fingerprint = 9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
 # uid                  Docker Release (CE deb) <docker@docker.com>
@@ -92,21 +131,43 @@ echo 'source ~/.autoenv/activate.sh' >> ~/.bashrc
 
 ## Setup SSH key for GitHub
 
+Open the following link to the installation guide and select the "Linux" tab. Follow the instructions.
+
 https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
 ## Install the exercise project
 
+First clone the project repository. You will use this as a reference to read the assignments and solutions. Each assignment and solution is in its own git branch.
 ```
-cd /c/dev/
+mkdir -p /c/projects
+cd /c/projects
 git clone git@github.com:villesiltala/bc-summer-project-code-2019.git
+```
 
-# Open a new debian WSL window and close the current.
+Then clone it again into another directory and remove git from it. This will be your project folder where you can do the exercises.
 
-cd /c/dev/project-path
+```
+cd /c/projects
+git clone git@github.com:villesiltala/bc-summer-project-code-2019.git mysummerproject
+rm -rf /c/projects/mysummerproject/.git
+```
+_The name does not have to be "mysummerproject". You can name it whatever you feel like._
 
-# Allow autoenv to do its magic.
+Open a new debian WSL window and close the current.
 
-# Start the project
+```
+cd /c/dev/mysummerproject
+```
 
+Allow autoenv to do its magic.
+
+Start the project:
+
+```
 docker-compose up -d
+```
+or
+
+```
+make docker-start
 ```
