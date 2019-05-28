@@ -1,7 +1,7 @@
 # Business College Helsinki - WordPress Summer Project Learning Week 2019
 
-## Assignment - OOP2
+## Assignment - OOP3
 
-Implement the EventInterface with the Event class.
+Implement the MVC pattern for the event page. Base codes can be found in `web/app/src/MVC`. The template base can be found in `web/app/src/Templates`.
 
-Create some dummy events in `web/public/index.php` and print their information in a `<ul>` HTML element. Use different time formatting for each event. For example one could print out the date in ISO 8601 format and another could print out a Finnish time format (dd.mm.yyyy HH:MM).
+Complete the template by displaying the event content as required in the todos in  `web/app/src/Templates/EventTemplate.php`.
