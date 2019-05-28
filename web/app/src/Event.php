@@ -37,4 +37,8 @@ class Event {
         return $this->end_date;
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> oop2
