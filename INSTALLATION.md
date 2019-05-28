@@ -17,7 +17,7 @@
 
 Inside Debian run:
 
-```
+```sh
 sudo nano /etc/wsl.conf
 ```
 
@@ -44,7 +44,7 @@ Based on:
 - https://docs.docker.com/install/linux/docker-ce/debian/
 - https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly#install-docker-compose
 
-```
+```sh
 # Update the apt package index:
 sudo apt-get update
 
@@ -93,7 +93,7 @@ docker info
 
 ## INSTALL DOCKER COMPOSE
 
-```
+```sh
 # Install Python and PIP.
 sudo apt-get install -y python
 
@@ -110,7 +110,7 @@ docker-compose --version
 
 ## INSTALL NODE
 
-```
+```sh
 # Now add the package repository of NodeJS 8.x with the following command:
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 
@@ -124,7 +124,7 @@ npm -v
 
 ## INSTALL AUTOENV
 
-```
+```sh
 git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
 echo 'source ~/.autoenv/activate.sh' >> ~/.bashrc
 ```
@@ -138,7 +138,8 @@ https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-th
 ## Install the exercise project
 
 First clone the project repository. You will use this as a reference to read the assignments and solutions. Each assignment and solution is in its own git branch.
-```
+
+```sh
 mkdir -p /c/projects
 cd /c/projects
 git clone git@github.com:villesiltala/bc-summer-project-code-2019.git
@@ -146,7 +147,7 @@ git clone git@github.com:villesiltala/bc-summer-project-code-2019.git
 
 Then clone it again into another directory and remove git from it. This will be your project folder where you can do the exercises.
 
-```
+```sh
 cd /c/projects
 git clone git@github.com:villesiltala/bc-summer-project-code-2019.git mysummerproject
 rm -rf /c/projects/mysummerproject/.git
@@ -155,19 +156,29 @@ _The name does not have to be "mysummerproject". You can name it whatever you fe
 
 Open a new debian WSL window and close the current.
 
-```
-cd /c/dev/mysummerproject
-```
+Go to your project directory.
 
 Allow autoenv to do its magic.
 
+Copy the composer.json dist file into a real one:
+
+```sh
+cp web/app/composer.json.dist web/app/composer.json
+```
+
 Start the project:
 
-```
+```sh
 docker-compose up -d
 ```
 or
 
-```
+```sh
 make docker-start
 ```
+
+If you get an error from starting Docker, run:
+```
+make rm-containers
+```
+This will stop and remove all containers. Try starting the container again.
