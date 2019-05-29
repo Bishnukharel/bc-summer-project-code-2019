@@ -27,13 +27,13 @@ class Event {
         return $this;
     }
 
-    public function get_title() {
+    public function get_title() : string {
         return $this->title;
     }
-    public function get_start_date() {
+    public function get_start_date() : string {
         return $this->start_date;
     }
-    public function get_end_date() {
+    public function get_end_date() : string {
         return $this->end_date;
     }
 

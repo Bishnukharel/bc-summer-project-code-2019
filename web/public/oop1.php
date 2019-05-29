@@ -26,7 +26,7 @@ $events = [
             <?php foreach( $events as $event ) : ?>
                 <li>
                     <b><?php echo $event->get_title(); ?></b>
-                    <?php echo $event->get_start_date() . ' - ' . $event->get_start_date(); ?>
+                    <?php echo $event->get_start_date() . ' - ' . $event->get_end_date(); ?>
                 </li>
             <?php endforeach; ?>
         </ul>

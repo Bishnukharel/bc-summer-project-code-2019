@@ -10,4 +10,4 @@ Create an event class that contains the following properties:
 
 Create a getter and setter for each property.
 
-Create some dummy events in `web/public/index.php` and print their information in a `<ul>` HTML element.
+Create some dummy events in `web/public/oop1.php` and print their information in a `<ul>` HTML element.
